@@ -1,0 +1,57 @@
+# Especificações Técnicas
+
+## Estrutura de Dados
+
+### Log Normalizado
+
+```typescript
+{
+  id: string;
+  timestamp: Date;
+  level: "info" | "warning" | "error" | "warn" | "debug";
+  component: string;
+  message: string;
+  raw: string;
+  source: "NSX" | "HCX" | "ESXi" | "vCenter" | "unknown";
+  metadata: {
+    fileId: string;
+    lineNumber: number;
+    parsedAt: Date;
+  }
+}
+```
+
+### Componente
+
+```typescript
+{
+  id: string;
+  name: string;
+  type: string;
+  logs: string[]; // log IDs
+}
+```
+
+## Padrões de Código
+
+- TypeScript strict mode
+- Componentes funcionais com hooks
+- Server Components quando possível
+- Client Components apenas quando necessário
+- Validação com Zod
+- Sanitização de inputs
+
+## Segurança
+
+- Validação de uploads (tipo, tamanho)
+- Sanitização antes do Firestore
+- Rate limiting em API routes
+- Headers de segurança configurados
+- Validação de inputs em formulários
+
+## Performance
+
+- Paginação de logs
+- Índices Firestore otimizados
+- Lazy loading de componentes
+- Cache estratégico

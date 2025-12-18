@@ -1,0 +1,31 @@
+# Passos e Processos
+
+## Fluxo de Desenvolvimento
+
+1. Planejar antes de implementar
+2. Criar testes junto com a funcionalidade
+3. Documentar decisões importantes
+4. Seguir padrões de segurança desde o início
+
+## Processo de Upload de Logs
+
+1. Validação de arquivo (tipo, tamanho)
+2. Parse do arquivo
+3. Normalização por tipo VMware
+4. Armazenamento no Firestore
+5. Feedback ao usuário
+
+## Processo de Análise
+
+1. Carregar logs do Firestore
+2. Aplicar filtros selecionados
+3. Renderizar timeline
+4. Permitir drilldown por componente
+5. Exibir análise detalhada
+
+## Processo de Testes
+
+1. Testes unitários para parsers
+2. Testes de integração para upload
+3. Testes E2E para fluxo completo
+4. Executar antes de commit

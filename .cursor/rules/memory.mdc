@@ -1,0 +1,41 @@
+# Memórias do Projeto
+
+## Características do Desenvolvedor
+
+- Programador sênior especializado em Tailwind CSS v4, Next.js 16 e Firestore
+- Foco em documentação detalhada e alto poder de reflexão antes de iniciar atividades
+- Abordagem security-driven: começar simples com todas as travas de segurança necessárias
+
+## Estrutura de Documentação
+
+- Todas as documentações técnicas ficam em `docs/` (exceto README.md na raiz)
+- Arquivos de memória, passos e especificações estão em `.cursor/rules/`:
+  - `memory.mdc` - Memórias do projeto
+  - `steps.mdc` - Passos e processos
+  - `spec.mdc` - Especificações técnicas
+
+## Diretivas de Comportamento
+
+- Sempre fazer uma tarefa do início ao fim
+- Sempre fazer teste automatizado
+- Aplicação hospedada na Vercel (produção) e localmente (dev)
+- Criar `.vercelignore`, `.gitignore` e `.cursorignore`
+- No `.cursorignore` adicionar `!.env.dev`
+- Criar `.env.dev` e sempre utilizar para variáveis de ambiente de desenvolvimento
+
+## Stack Tecnológica
+
+- Next.js 16 com App Router
+- TypeScript
+- Tailwind CSS v4
+- Firebase/Firestore
+- shadcn/ui para componentes
+
+## Funcionalidades Principais
+
+- Upload de logs (.log e .txt)
+- Formatação e normalização de logs
+- Timeline visual com drilldown
+- Filtros por tags (tipo de mensagem, componentes, data/ranges)
+- Page builder para customização visual
+- Design responsivo com menu hambúrguer
