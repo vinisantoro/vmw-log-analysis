@@ -27,7 +27,7 @@ const levelColors = {
 export default function AnalyzePage() {
   const params = useParams();
   const router = useRouter();
-  const logId = params.logId as string;
+  const logId = Array.isArray(params.logId) ? params.logId[0] : params.logId;
   const [log, setLog] = useState<NormalizedLog | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -35,16 +35,15 @@ export default function AnalyzePage() {
   useEffect(() => {
     async function fetchLog() {
       try {
-        const response = await fetch(`/api/logs?limit=1`);
+        const response = await fetch(`/api/logs/${logId}`);
         const data = await response.json();
         
         if (!response.ok) {
           throw new Error(data.error || 'Failed to fetch log');
         }
 
-        const foundLog = data.logs.find((l: NormalizedLog) => l.id === logId);
-        if (foundLog) {
-          setLog(foundLog);
+        if (data.log) {
+          setLog(data.log);
         } else {
           setError('Log não encontrado');
         }

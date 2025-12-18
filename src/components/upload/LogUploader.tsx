@@ -1,60 +1,66 @@
 "use client";
 
-import { useState, useCallback } from 'react';
-import { Upload, X, FileText, Loader2 } from 'lucide-react';
-import { validateFile } from '@/lib/utils/validation';
+import { useState, useCallback } from "react";
+import { Upload, X, FileText, Loader2 } from "lucide-react";
+import { validateFile } from "@/lib/utils/validation";
 
 interface LogUploaderProps {
   onUploadSuccess?: (fileId: string, logsCount: number) => void;
   onUploadError?: (error: string) => void;
 }
 
-export function LogUploader({ onUploadSuccess, onUploadError }: LogUploaderProps) {
+export function LogUploader({
+  onUploadSuccess,
+  onUploadError,
+}: LogUploaderProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const handleFile = useCallback(async (file: File) => {
-    setError(null);
-    
-    // Validate file
-    const validation = validateFile(file);
-    if (!validation.valid) {
-      const errorMsg = validation.error || 'Invalid file';
-      setError(errorMsg);
-      onUploadError?.(errorMsg);
-      return;
-    }
+  const handleFile = useCallback(
+    async (file: File) => {
+      setError(null);
 
-    setUploadedFile(file);
-    setIsUploading(true);
-
-    try {
-      const formData = new FormData();
-      formData.append('file', file);
-
-      const response = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Upload failed');
+      // Validate file
+      const validation = validateFile(file);
+      if (!validation.valid) {
+        const errorMsg = validation.error || "Invalid file";
+        setError(errorMsg);
+        onUploadError?.(errorMsg);
+        return;
       }
 
-      onUploadSuccess?.(data.fileId, data.logsCount);
-      setUploadedFile(null);
-    } catch (err) {
-      const errorMsg = err instanceof Error ? err.message : 'Upload failed';
-      setError(errorMsg);
-      onUploadError?.(errorMsg);
-    } finally {
-      setIsUploading(false);
-    }
-  }, [onUploadSuccess, onUploadError]);
+      setUploadedFile(file);
+      setIsUploading(true);
+
+      try {
+        const formData = new FormData();
+        formData.append("file", file);
+
+        const response = await fetch("/api/upload", {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || "Upload failed");
+        }
+
+        onUploadSuccess?.(data.fileId, data.logsCount);
+        setUploadedFile(null);
+      } catch (err) {
+        const errorMsg = err instanceof Error ? err.message : "Upload failed";
+        setError(errorMsg);
+        onUploadError?.(errorMsg);
+      } finally {
+        setIsUploading(false);
+      }
+    },
+    [onUploadSuccess, onUploadError]
+  );
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -68,23 +74,29 @@ export function LogUploader({ onUploadSuccess, onUploadError }: LogUploaderProps
     setIsDragging(false);
   }, []);
 
-  const handleDrop = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(false);
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setIsDragging(false);
 
-    const file = e.dataTransfer.files[0];
-    if (file) {
-      handleFile(file);
-    }
-  }, [handleFile]);
+      const file = e.dataTransfer.files[0];
+      if (file) {
+        handleFile(file);
+      }
+    },
+    [handleFile]
+  );
 
-  const handleFileInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      handleFile(file);
-    }
-  }, [handleFile]);
+  const handleFileInput = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (file) {
+        handleFile(file);
+      }
+    },
+    [handleFile]
+  );
 
   const removeFile = useCallback(() => {
     setUploadedFile(null);
@@ -99,8 +111,8 @@ export function LogUploader({ onUploadSuccess, onUploadError }: LogUploaderProps
         onDrop={handleDrop}
         className={`
           border-2 border-dashed rounded-lg p-8 text-center transition-colors
-          ${isDragging ? 'border-primary bg-accent' : 'border-muted'}
-          ${isUploading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+          ${isDragging ? "border-primary bg-accent" : "border-muted"}
+          ${isUploading ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
         `}
       >
         <input
@@ -166,4 +178,3 @@ export function LogUploader({ onUploadSuccess, onUploadError }: LogUploaderProps
     </div>
   );
 }
-

@@ -1,27 +1,30 @@
 "use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { LogUploader } from '@/components/upload/LogUploader';
-import { CheckCircle2 } from 'lucide-react';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { LogUploader } from "@/components/upload/LogUploader";
+import { CheckCircle2 } from "lucide-react";
 
 export default function UploadPage() {
   const router = useRouter();
   const [uploadSuccess, setUploadSuccess] = useState(false);
-  const [uploadData, setUploadData] = useState<{ fileId: string; logsCount: number } | null>(null);
+  const [uploadData, setUploadData] = useState<{
+    fileId: string;
+    logsCount: number;
+  } | null>(null);
 
   const handleUploadSuccess = (fileId: string, logsCount: number) => {
     setUploadData({ fileId, logsCount });
     setUploadSuccess(true);
-    
+
     // Redirect to timeline after 2 seconds
     setTimeout(() => {
-      router.push('/timeline');
+      router.push("/timeline");
     }, 2000);
   };
 
   const handleUploadError = (error: string) => {
-    console.error('Upload error:', error);
+    console.error("Upload error:", error);
   };
 
   return (
@@ -41,7 +44,8 @@ export default function UploadPage() {
               </h2>
             </div>
             <p className="text-green-800 dark:text-green-200">
-              {uploadData.logsCount} logs processados. Redirecionando para a timeline...
+              {uploadData.logsCount} logs processados. Redirecionando para a
+              timeline...
             </p>
           </div>
         ) : (
@@ -54,4 +58,3 @@ export default function UploadPage() {
     </div>
   );
 }
-
