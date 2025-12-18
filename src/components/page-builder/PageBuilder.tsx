@@ -47,11 +47,13 @@ export function PageBuilder() {
           </p>
         );
       case 'heading':
-        const HeadingTag = `h${element.props.level || 1}` as keyof JSX.IntrinsicElements;
+        const level = element.props.level || 1;
+        const HeadingTag = `h${level}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+        const HeadingComponent = HeadingTag;
         return (
-          <HeadingTag style={element.props.style || {}}>
+          <HeadingComponent style={element.props.style || {}}>
             {element.props.content || 'Título'}
-          </HeadingTag>
+          </HeadingComponent>
         );
       case 'image':
         return (

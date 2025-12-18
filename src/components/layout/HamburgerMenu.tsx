@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Home, Upload, Timeline, Search, X } from "lucide-react";
+import { Home, Upload, Activity, Search, X } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 
 interface HamburgerMenuProps {
@@ -13,7 +13,7 @@ export function HamburgerMenu({ isOpen, onClose }: HamburgerMenuProps) {
   const menuItems = [
     { href: "/", label: "Início", icon: Home },
     { href: "/upload", label: "Upload", icon: Upload },
-    { href: "/timeline", label: "Timeline", icon: Timeline },
+    { href: "/timeline", label: "Timeline", icon: Activity },
     { href: "/analyze", label: "Análise", icon: Search },
   ];
 

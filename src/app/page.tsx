@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Upload, Timeline, Search } from "lucide-react";
+import { Upload, Activity, Search } from "lucide-react";
 
 export default function Home() {
   return (
@@ -31,7 +31,7 @@ export default function Home() {
             href="/timeline"
             className="p-6 border rounded-lg hover:bg-accent transition-colors"
           >
-            <Timeline className="w-8 h-8 mb-4 text-primary" />
+            <Activity className="w-8 h-8 mb-4 text-primary" />
             <h2 className="text-xl font-semibold mb-2">Timeline</h2>
             <p className="text-muted-foreground">
               Visualize todos os eventos em uma timeline interativa

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, Home, Upload, Timeline, Search } from "lucide-react";
+import { Menu, X, Home, Upload, Activity, Search } from "lucide-react";
 import { HamburgerMenu } from "./HamburgerMenu";
 
 export function Header() {
@@ -36,7 +36,7 @@ export function Header() {
               href="/timeline"
               className="text-sm font-medium transition-colors hover:text-primary"
             >
-              <Timeline className="w-4 h-4 inline mr-2" />
+              <Activity className="w-4 h-4 inline mr-2" />
               Timeline
             </Link>
             <Link
