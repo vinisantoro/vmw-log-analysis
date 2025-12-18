@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from 'react';
-import { ComponentPalette } from './ComponentPalette';
-import { PropertyPanel } from './PropertyPanel';
-import { GripVertical, Trash2 } from 'lucide-react';
+import { useState } from "react";
+import { ComponentPalette } from "./ComponentPalette";
+import { PropertyPanel } from "./PropertyPanel";
+import { GripVertical, Trash2 } from "lucide-react";
 
 interface PageElement {
   id: string;
@@ -26,13 +26,15 @@ export function PageBuilder() {
   };
 
   const updateElement = (id: string, props: Record<string, any>) => {
-    setElements(elements.map(el => 
-      el.id === id ? { ...el, props: { ...el.props, ...props } } : el
-    ));
+    setElements(
+      elements.map((el) =>
+        el.id === id ? { ...el, props: { ...el.props, ...props } } : el
+      )
+    );
   };
 
   const deleteElement = (id: string) => {
-    setElements(elements.filter(el => el.id !== id));
+    setElements(elements.filter((el) => el.id !== id));
     if (selectedElement === id) {
       setSelectedElement(null);
     }
@@ -40,26 +42,32 @@ export function PageBuilder() {
 
   const renderElement = (element: PageElement) => {
     switch (element.type) {
-      case 'text':
+      case "text":
         return (
           <p style={element.props.style || {}}>
-            {element.props.content || 'Texto'}
+            {element.props.content || "Texto"}
           </p>
         );
-      case 'heading':
+      case "heading":
         const level = element.props.level || 1;
-        const HeadingTag = `h${level}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+        const HeadingTag = `h${level}` as
+          | "h1"
+          | "h2"
+          | "h3"
+          | "h4"
+          | "h5"
+          | "h6";
         const HeadingComponent = HeadingTag;
         return (
           <HeadingComponent style={element.props.style || {}}>
-            {element.props.content || 'Título'}
+            {element.props.content || "Título"}
           </HeadingComponent>
         );
-      case 'image':
+      case "image":
         return (
           <img
-            src={element.props.src || ''}
-            alt={element.props.alt || ''}
+            src={element.props.src || ""}
+            alt={element.props.alt || ""}
             style={element.props.style || {}}
           />
         );
@@ -88,8 +96,8 @@ export function PageBuilder() {
                 key={element.id}
                 className={`relative border-2 rounded p-4 ${
                   selectedElement === element.id
-                    ? 'border-primary'
-                    : 'border-transparent hover:border-muted'
+                    ? "border-primary"
+                    : "border-transparent hover:border-muted"
                 }`}
                 onClick={() => setSelectedElement(element.id)}
               >
@@ -115,7 +123,7 @@ export function PageBuilder() {
       {selectedElement && (
         <div className="w-80 border-l bg-muted/50 p-4">
           <PropertyPanel
-            element={elements.find(el => el.id === selectedElement)!}
+            element={elements.find((el) => el.id === selectedElement)!}
             onUpdate={(props) => updateElement(selectedElement, props)}
           />
         </div>
@@ -123,4 +131,3 @@ export function PageBuilder() {
     </div>
   );
 }
-
