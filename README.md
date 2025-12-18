@@ -2,6 +2,12 @@
 
 Sistema web para análise de logs VMware (NSX, HCX, ESXi, vCenter, etc) com timeline visual, drilldown por componentes, filtros avançados e page builder para customização visual.
 
+## 🌐 Links
+
+- **Repositório**: [https://github.com/vinisantoro/vmw-log-analysis](https://github.com/vinisantoro/vmw-log-analysis)
+- **Produção**: [https://vmw-log-analysis.dailytech.bits](https://vmw-log-analysis.dailytech.bits)
+- **Vercel**: [https://vercel.com/dashboard](https://vercel.com/dashboard)
+
 ## Tecnologias
 
 - **Next.js 16** - Framework React com App Router
@@ -62,7 +68,27 @@ Abra [http://localhost:3000](http://localhost:3000) no navegador.
 
 ## Documentação
 
-Consulte a pasta `docs/` para documentação técnica detalhada.
+Consulte a pasta `docs/` para documentação técnica detalhada:
+- [Arquitetura](docs/architecture.md)
+- [API](docs/api.md)
+- [Deployment](docs/deployment.md)
+- [Setup Vercel](docs/vercel-setup.md)
+
+## Configuração do Firebase
+
+O projeto está configurado com Firebase em modo desenvolvimento:
+- **Project ID**: `vmw-analysis-d308f`
+- **Status**: Desenvolvimento (sem regras de segurança)
+
+**Importante**: As credenciais estão no arquivo `.env.dev` (não versionado). Para produção, configure as variáveis de ambiente na Vercel.
+
+## Deploy
+
+O projeto está configurado para deploy automático na Vercel:
+- Push para `main` → Deploy de produção
+- Domínio: `vmw-log-analysis.dailytech.bits`
+
+Consulte [docs/vercel-setup.md](docs/vercel-setup.md) para instruções detalhadas de configuração.
 
 ## Licença
 
